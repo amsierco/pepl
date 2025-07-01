@@ -966,3 +966,427 @@ org.eclipse.swt.SWTException: Invalid thread access
 
 !ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-23 17:43:11.960
 !MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+!SESSION 2025-06-25 10:09:45.996 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/samitmohapatra/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/samitmohapatra/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-25 10:10:00.929
+!MESSAGE Log4j2 initialized with config file /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-25 10:10:13.764
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-25 14:34:53.398 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/samitmohapatra/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/samitmohapatra/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-25 14:35:13.222
+!MESSAGE Log4j2 initialized with config file /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-25 14:35:35.278
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-25 14:44:18.458
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-25 14:45:27.962
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+!SESSION 2025-06-26 14:29:10.455 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/samitmohapatra/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/samitmohapatra/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-26 14:29:26.201
+!MESSAGE Log4j2 initialized with config file /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-26 14:29:39.394
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:30:58.734
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:38:31.299
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:39:55.625
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:40:25.460
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:44:02.631
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:44:50.928
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY org.eclipse.ui 4 0 2025-06-26 14:49:47.390
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.swt.widgets.Shell.getDisplay()" because the return value of "org.eclipse.ui.internal.findandreplace.overlay.FindReplaceOverlay.getShell()" is null
+	at org.eclipse.ui.internal.findandreplace.overlay.FindReplaceOverlay.updatePlacementAndVisibility(FindReplaceOverlay.java:848)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4382)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4005)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:54:25.908
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 14:55:54.804
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:14:44.990
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:16:28.175
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 15:16:30.827
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 11 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 15:16:30.828
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 15:16:30.829
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 11 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 15:16:30.829
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:33:29.223
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:34:44.352
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:35:50.354
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:37:14.176
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 15:47:02.572
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 16:08:22.187
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:08:24.678
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 17 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:08:24.680
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:08:24.682
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 17 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:08:24.682
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-26 16:37:38.739
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:37:41.290
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 18 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:37:41.290
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:37:41.291
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 18 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-06-26 16:37:41.291
+!MESSAGE Existing sessions are:
+!SESSION 2025-06-30 08:44:31.597 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/samitmohapatra/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/samitmohapatra/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-30 08:44:45.207
+!MESSAGE Log4j2 initialized with config file /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-30 08:44:56.434
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-06-30 09:23:35.410
+!MESSAGE Indexed 'PEPL_PPU' (26 sources, 121 headers) in 5.11 sec: 14,827 declarations; 91,127 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.16%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:05:35.737
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:06:49.206
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:07:09.967
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY org.eclipse.cdt.ui 4 0 2025-06-30 11:08:43.010
+!MESSAGE Error in CDT UI during reconcile
+!STACK 1
+C Model Exception: C Model Status [Element main.c does not exist.]
+	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(CElement.java:485)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:583)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:65)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:346)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:613)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:641)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:365)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:79)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2025-06-30 11:08:43.014
+!MESSAGE Element main.c does not exist.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:09:07.790
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:11:22.112
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:15:52.199
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:17:19.983
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:47:09.509
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 11:48:04.164
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 12:17:39.429
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+!SESSION 2025-06-30 13:47:22.646 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/samitmohapatra/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/samitmohapatra/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-30 13:47:47.469
+!MESSAGE Log4j2 initialized with config file /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-30 13:47:58.889
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.ui 4 0 2025-06-30 13:48:31.145
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.swt.widgets.Shell.getDisplay()" because the return value of "org.eclipse.ui.internal.findandreplace.overlay.FindReplaceOverlay.getShell()" is null
+	at org.eclipse.ui.internal.findandreplace.overlay.FindReplaceOverlay.updatePlacementAndVisibility(FindReplaceOverlay.java:848)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4382)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4005)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1151)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1042)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:639)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:546)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 13:59:59.756
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 14:01:38.468
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 14:57:28.480
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 15:47:20.365
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 15:51:00.938
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:10:48.117
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:13:03.862
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:14:57.276
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:20:59.724
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:23:01.567
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:25:13.782
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:26:34.192
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:27:52.619
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-06-30 16:32:25.159
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+!SESSION 2025-07-01 10:36:16.987 -----------------------------------------------
+eclipse.buildId=Version 1.18.1
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/samitmohapatra/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/samitmohapatra/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-07-01 10:36:31.709
+!MESSAGE Log4j2 initialized with config file /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-07-01 10:36:45.699
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:38:21.318
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:39:33.128
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:42:36.386
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:43:21.879
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:44:06.467
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:45:15.314
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:48:34.336
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 10:52:16.297
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 11:04:55.116
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 11:06:28.168
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 11:17:41.920
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 11:28:16.109
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 11:34:23.852
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 11:34:33.344
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 12:38:52.605
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:03:06.907
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:05:16.097
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:11:02.029
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:32:21.287
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:33:29.490
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:34:21.714
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:35:16.063
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:36:10.857
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:43:18.396
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:44:41.505
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:45:42.373
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 13:59:09.818
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 14:10:26.156
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 14:11:11.125
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 14:12:01.387
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 14:19:29.596
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 14:36:41.506
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2025-07-01 14:40:11.522
+!MESSAGE SWV configuration; base: 192000000; minDiv: 16; maxDiv: 65535; maxSWO: 12000000; limit: 12000000 => SWO: 12000000; CPU: 170000000; div: 14

@@ -15,6 +15,12 @@
 //  *
 //  ******************************************************************************
 //  */
+
+// Spec sheet for ACS37002LLAATR-015B3 Current Sense IC https://www.allegromicro.com/-/media/files/datasheets/acs37002-datasheet.pdf
+// Last Edited 06/26/2025 by Samit Mohapatra
+// UMICH PEPL PPU Project
+
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -22,6 +28,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+#include "math.h"
 //
 /* USER CODE END Includes */
 
@@ -32,15 +39,36 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//#define INTERLEAVING
-//
-//#ifdef INTERLEAVING
-//	#define VOLTAGE_SETPOINT 15
-//	#define CURRENT1_SETPOINT 1
-//	#define CURRENT2_SETPOINT 1
-//#endif
-//
-#define ADC_BUFFER_SIZE 5
+#define INTERLEAVING
+// #define DEBUG_INTERLEAVING
+
+#ifdef INTERLEAVING
+	#define VOLTAGE_SETPOINT 15
+	#define CURRENT1_SETPOINT 2.875
+	#define CURRENT2_SETPOINT 1
+
+	// --- Control Gains ---
+	// Inner current loop
+	#define Kp_current 20
+	#define Ki_current 0.01
+
+	// Outer voltage loop
+	#define Kp_voltage 0
+	#define Ki_voltage 0
+
+	// --- Clamp Values ---
+	#define ERROR_BUFFER_SIZE 10
+	#define MAX_PWM 125
+	#define MIN_PWM 56
+	#define MAX_INTEGRAL 25
+	#define MIN_INTEGRAL -25
+
+	#define CTRL_LP_T 1
+#endif
+
+#define ADC_BUFFER_SIZE 10
+
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -58,7 +86,10 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
-//
+#ifdef INTERLEAVING
+	const float current_sensor_conv = 0.088;
+	const float current_sensor_max = 3.3; // Calibrated value
+#endif
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,21 +98,31 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
-static void MX_LPUART1_UART_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_LPUART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
-//
+#ifdef INTERLEAVING
+	float convert_adc_to_current(uint16_t*);
+#endif
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//
-////int __io_putchar(int ch)
-////{
-////    ITM_SendChar(ch);
-////    return ch;
-////}
-//
+#ifdef INTERLEAVING
+	float convert_adc_to_current(uint16_t* adc_buffer)
+	{
+		float avg = 0;
+
+		//printf("ADC Values: [%d, %d, %d, %d, %d]\r\n", adc_buffer[0], adc_buffer[1], adc_buffer[2], adc_buffer[3], adc_buffer[4]);
+
+		for (int i = 0; i < ADC_BUFFER_SIZE; ++i) {
+			avg += adc_buffer[i] / ADC_BUFFER_SIZE;
+		}
+
+		return ((avg - 32768.0) / 32768.0) * current_sensor_max / current_sensor_conv;
+	}
+#endif
+
 /* USER CODE END 0 */
 
 /**
@@ -92,7 +133,15 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	int16_t adc_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
+	#ifdef INTERLEAVING
+		float current = 0;
+		float error = 0;
+		float integral = 0;
+		float control = 0;
+		float pulse = 63;
+	#endif
+	uint16_t adc_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
+
 
   /* USER CODE END 1 */
 
@@ -117,15 +166,28 @@ int main(void)
   MX_DMA_Init();
   MX_TIM1_Init();
   MX_ADC1_Init();
-  MX_LPUART1_UART_Init();
   MX_TIM3_Init();
+  MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  // Calibrate in differential mode
+  if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_DIFFERENTIAL_ENDED) != HAL_OK)
+  {
+      Error_Handler();  // Handle calibration failure
+  }
+
+  // Optional: wait a bit for safety (not strictly required)
+  HAL_Delay(1);
+
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);      // Start main PWM on PA9
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);   // Start complementary PWM on PB0
   HAL_TIM_Base_Start(&htim3);  // Start TIM3 base timer
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_diff_buffer, ADC_BUFFER_SIZE);
 
   printf("Starting ADC Readout\r\n");
+	#ifdef DEBUG
+  	  printf("ADC Values: [%d, %d, %d, %d, %d]\r\n", adc_diff_buffer[0], adc_diff_buffer[1], adc_diff_buffer[2], adc_diff_buffer[3], adc_diff_buffer[4]);
+	#endif
+
 
   /* USER CODE END 2 */
 
@@ -134,12 +196,36 @@ int main(void)
   while (1)
   {
 
-	  if (HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK)
-	      {
-	          uint32_t adc_val = HAL_ADC_GetValue(&hadc1);
-	          printf("ADC Value: %lu\r\n", adc_val);
-	      }
+
+	#ifdef INTERLEAVING
+		  current = convert_adc_to_current(adc_diff_buffer);
+		  error = current - CURRENT1_SETPOINT;
+		  integral = fmaxf(fminf(integral + error * CTRL_LP_T, MAX_INTEGRAL), MIN_INTEGRAL);
+		  control = Kp_current * error + Ki_current * integral;
+		  pulse = floorf(fmaxf(fminf(pulse - control, MAX_PWM), MIN_PWM));
+
+		  printf("Current: %f Amps\r\n", current);
+		  printf("Error: %f \r\n", error);
+		  printf("Integral: %f \r\n", integral);
+		  printf("Control: %f \r\n", control);
+		  printf("pulse: %f \r\n\n\n", pulse);
+		  printf("    -----  NEXT  -----    \r\n");
+
+		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, pulse);
+
+		  HAL_Delay(1000 * CTRL_LP_T);
+
+
+	#endif
+	#ifdef DEBUG_INTERLEAVING
+	  //printf("ADC Value: %d\r\n", adc_diff_buffer[0]);
+	  float avg = ((float)adc_diff_buffer[0] + (float)adc_diff_buffer[1] + (float)adc_diff_buffer[2] + (float)adc_diff_buffer[3] + (float)adc_diff_buffer[4]) / 5;
+	  float voltage = ((-1.0*(avg - 2047.0)/2047.0)*3.3);
+	  float current = voltage / 0.088;
+	  printf("Voltage: %f Volts\r\n", voltage);
+	  printf("Current: %f Amps\r\n", current);
 	  HAL_Delay(100);  // Slow it down a bit for readability
+	#endif
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -229,7 +315,11 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
   hadc1.Init.DMAContinuousRequests = ENABLE;
   hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
-  hadc1.Init.OversamplingMode = DISABLE;
+  hadc1.Init.OversamplingMode = ENABLE;
+  hadc1.Init.Oversampling.Ratio = ADC_OVERSAMPLING_RATIO_256;
+  hadc1.Init.Oversampling.RightBitShift = ADC_RIGHTBITSHIFT_4;
+  hadc1.Init.Oversampling.TriggeredMode = ADC_TRIGGEREDMODE_SINGLE_TRIGGER;
+  hadc1.Init.Oversampling.OversamplingStopReset = ADC_REGOVERSAMPLING_CONTINUED_MODE;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();

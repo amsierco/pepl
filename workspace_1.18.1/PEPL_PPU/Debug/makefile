@@ -61,7 +61,7 @@ main-build: PEPL_PPU.elf secondary-outputs
 
 # Tool invocations
 PEPL_PPU.elf PEPL_PPU.map: $(OBJS) $(USER_OBJS) /Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/PEPL_PPU/STM32G474RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "PEPL_PPU.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/PEPL_PPU/STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PEPL_PPU.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "PEPL_PPU.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/PEPL_PPU/STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PEPL_PPU.map" -Wl,--gc-sections -static -lm --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
