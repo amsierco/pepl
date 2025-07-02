@@ -43,14 +43,14 @@
 // #define DEBUG_INTERLEAVING
 
 #ifdef INTERLEAVING
-	#define VOLTAGE_SETPOINT 15
-	#define CURRENT1_SETPOINT 2.875
-	#define CURRENT2_SETPOINT 1
+	#define VOLTAGE_SETPOINT 6
+	#define CURRENT1_SETPOINT 0.1875
+	#define CURRENT2_SETPOINT 0.1875
 
 	// --- Control Gains ---
 	// Inner current loop
-	#define Kp_current 20
-	#define Ki_current 0.01
+	#define Kp_current 0
+	#define Ki_current 0
 
 	// Outer voltage loop
 	#define Kp_voltage 0
@@ -78,7 +78,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+ADC_HandleTypeDef hadc4;
 DMA_HandleTypeDef hdma_adc1;
+DMA_HandleTypeDef hdma_adc4;
 
 UART_HandleTypeDef hlpuart1;
 
@@ -99,6 +101,7 @@ static void MX_DMA_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_TIM3_Init(void);
+static void MX_ADC4_Init(void);
 static void MX_LPUART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 #ifdef INTERLEAVING
@@ -113,10 +116,10 @@ static void MX_LPUART1_UART_Init(void);
 	{
 		float avg = 0;
 
-		//printf("ADC Values: [%d, %d, %d, %d, %d]\r\n", adc_buffer[0], adc_buffer[1], adc_buffer[2], adc_buffer[3], adc_buffer[4]);
+		printf("ADC Values: [%d, %d, %d, %d, %d]\r\n", adc_buffer[0], adc_buffer[1], adc_buffer[2], adc_buffer[3], adc_buffer[4]);
 
 		for (int i = 0; i < ADC_BUFFER_SIZE; ++i) {
-			avg += adc_buffer[i] / ADC_BUFFER_SIZE;
+			avg += (float)adc_buffer[i] / (float)ADC_BUFFER_SIZE;
 		}
 
 		return ((avg - 32768.0) / 32768.0) * current_sensor_max / current_sensor_conv;
@@ -134,13 +137,20 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 	#ifdef INTERLEAVING
-		float current = 0;
-		float error = 0;
-		float integral = 0;
-		float control = 0;
-		float pulse = 63;
+		float current1 = 0;
+		float error1 = 0;
+		float integral1 = 0;
+		float control1 = 0;
+		float pulse1 = 63;
+
+		float current2 = 0;
+		float error2 = 0;
+		float integral2 = 0;
+		float control2 = 0;
+		float pulse2 = 63;
 	#endif
-	uint16_t adc_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
+	uint16_t adc1_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
+	uint16_t adc4_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
 
 
   /* USER CODE END 1 */
@@ -165,27 +175,39 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_TIM1_Init();
-  MX_ADC1_Init();
+  // MX_ADC1_Init();
   MX_TIM3_Init();
+  // MX_ADC4_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
   // Calibrate in differential mode
-  if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_DIFFERENTIAL_ENDED) != HAL_OK)
-  {
-      Error_Handler();  // Handle calibration failure
-  }
+//  if (HAL_ADCEx_Calibration_Start(&hadc1, ADC_DIFFERENTIAL_ENDED) != HAL_OK)
+//  {
+//      Error_Handler();  // Handle calibration failure
+//  }
+//
+//  HAL_Delay(1);
+//
+//  if (HAL_ADCEx_Calibration_Start(&hadc4, ADC_DIFFERENTIAL_ENDED) != HAL_OK)
+//  {
+//      Error_Handler();  // Handle calibration failure
+//  }
 
   // Optional: wait a bit for safety (not strictly required)
   HAL_Delay(1);
 
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);      // Start main PWM on PA9
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);   // Start complementary PWM on PB0
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);      // Start main PWM on PA9
+  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);   // Start complementary PWM on PB0
+  // HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc1_diff_buffer, ADC_BUFFER_SIZE);
+  // HAL_ADC_Start_DMA(&hadc4, (uint32_t*)adc4_diff_buffer, ADC_BUFFER_SIZE);
   HAL_TIM_Base_Start(&htim3);  // Start TIM3 base timer
-  HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adc_diff_buffer, ADC_BUFFER_SIZE);
 
   printf("Starting ADC Readout\r\n");
 	#ifdef DEBUG
-  	  printf("ADC Values: [%d, %d, %d, %d, %d]\r\n", adc_diff_buffer[0], adc_diff_buffer[1], adc_diff_buffer[2], adc_diff_buffer[3], adc_diff_buffer[4]);
+  	  // printf("ADC 1 Values: [%d, %d, %d, %d, %d]\r\n", adc1_diff_buffer[0], adc1_diff_buffer[1], adc1_diff_buffer[2], adc1_diff_buffer[3], adc1_diff_buffer[4]);
+  	  // printf("ADC 4 Values: [%d, %d, %d, %d, %d]\r\n", adc4_diff_buffer[0], adc4_diff_buffer[1], adc4_diff_buffer[2], adc4_diff_buffer[3], adc4_diff_buffer[4]);
 	#endif
 
 
@@ -196,22 +218,36 @@ int main(void)
   while (1)
   {
 
+	  // This code needs to be moved into an interrupt at some point
+	  // so that the control loop frequency can be controlled
+	  // The delay will then be removed/changed
 
 	#ifdef INTERLEAVING
-		  current = convert_adc_to_current(adc_diff_buffer);
-		  error = current - CURRENT1_SETPOINT;
-		  integral = fmaxf(fminf(integral + error * CTRL_LP_T, MAX_INTEGRAL), MIN_INTEGRAL);
-		  control = Kp_current * error + Ki_current * integral;
-		  pulse = floorf(fmaxf(fminf(pulse - control, MAX_PWM), MIN_PWM));
+		  // current1 = convert_adc_to_current(adc1_diff_buffer);
+		  // current2 = convert_adc_to_current(adc4_diff_buffer);
 
-		  printf("Current: %f Amps\r\n", current);
-		  printf("Error: %f \r\n", error);
-		  printf("Integral: %f \r\n", integral);
-		  printf("Control: %f \r\n", control);
-		  printf("pulse: %f \r\n\n\n", pulse);
+		  error1 = current1 - CURRENT1_SETPOINT;
+		  error2 = current2 - CURRENT2_SETPOINT;
+
+		  integral1 = fmaxf(fminf(integral1 + error1 * CTRL_LP_T, MAX_INTEGRAL), MIN_INTEGRAL);
+		  integral2 = fmaxf(fminf(integral2 + error2 * CTRL_LP_T, MAX_INTEGRAL), MIN_INTEGRAL);
+
+		  control1 = Kp_current * error1 + Ki_current * integral1;
+		  control2 = Kp_current * error2 + Ki_current * integral2;
+
+		  pulse1 = floorf(fmaxf(fminf(pulse1 - control1, MAX_PWM), MIN_PWM));
+		  pulse2 = floorf(fmaxf(fminf(pulse2 - control2, MAX_PWM), MIN_PWM));
+
+
+		  printf("Current: [%f, %f] Amps\r\n", current1, current2);
+		  printf("Error: [%f, %f] \r\n", error1, error2);
+		  printf("Integral: [%f, %f] \r\n", integral1, integral2);
+		  printf("Control: [%f, %f] \r\n", control1, control2);
+		  printf("pulse: [%f, %f] \r\n\n\n", pulse1, pulse2);
 		  printf("    -----  NEXT  -----    \r\n");
 
-		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, pulse);
+		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, pulse1);
+		  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, pulse2);
 
 		  HAL_Delay(1000 * CTRL_LP_T);
 
@@ -352,6 +388,69 @@ static void MX_ADC1_Init(void)
 }
 
 /**
+  * @brief ADC4 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC4_Init(void)
+{
+
+  /* USER CODE BEGIN ADC4_Init 0 */
+
+  /* USER CODE END ADC4_Init 0 */
+
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC4_Init 1 */
+
+  /* USER CODE END ADC4_Init 1 */
+
+  /** Common config
+  */
+  hadc4.Instance = ADC4;
+  hadc4.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc4.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc4.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc4.Init.GainCompensation = 0;
+  hadc4.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc4.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc4.Init.LowPowerAutoWait = DISABLE;
+  hadc4.Init.ContinuousConvMode = DISABLE;
+  hadc4.Init.NbrOfConversion = 1;
+  hadc4.Init.DiscontinuousConvMode = DISABLE;
+  hadc4.Init.ExternalTrigConv = ADC_EXTERNALTRIG_T3_TRGO;
+  hadc4.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_RISING;
+  hadc4.Init.DMAContinuousRequests = ENABLE;
+  hadc4.Init.Overrun = ADC_OVR_DATA_PRESERVED;
+  hadc4.Init.OversamplingMode = ENABLE;
+  hadc4.Init.Oversampling.Ratio = ADC_OVERSAMPLING_RATIO_256;
+  hadc4.Init.Oversampling.RightBitShift = ADC_RIGHTBITSHIFT_4;
+  hadc4.Init.Oversampling.TriggeredMode = ADC_TRIGGEREDMODE_SINGLE_TRIGGER;
+  hadc4.Init.Oversampling.OversamplingStopReset = ADC_REGOVERSAMPLING_CONTINUED_MODE;
+  if (HAL_ADC_Init(&hadc4) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_3;
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLES_5;
+  sConfig.SingleDiff = ADC_DIFFERENTIAL_ENDED;
+  sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  sConfig.Offset = 0;
+  if (HAL_ADC_ConfigChannel(&hadc4, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC4_Init 2 */
+
+  /* USER CODE END ADC4_Init 2 */
+
+}
+
+/**
   * @brief LPUART1 Initialization Function
   * @param None
   * @retval None
@@ -442,6 +541,10 @@ static void MX_TIM1_Init(void)
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
@@ -491,7 +594,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 30000;
+  htim3.Init.Period = 50000;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
@@ -524,11 +627,15 @@ static void MX_DMA_Init(void)
   /* DMA controller clock enable */
   __HAL_RCC_DMAMUX1_CLK_ENABLE();
   __HAL_RCC_DMA1_CLK_ENABLE();
+  __HAL_RCC_DMA2_CLK_ENABLE();
 
   /* DMA interrupt init */
   /* DMA1_Channel1_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+  /* DMA2_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Channel1_IRQn);
 
 }
 

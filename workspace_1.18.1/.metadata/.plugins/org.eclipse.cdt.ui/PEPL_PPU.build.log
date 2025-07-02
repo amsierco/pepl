@@ -1,17 +1,31 @@
-14:40:06 **** Incremental Build of configuration Debug for project PEPL_PPU ****
+16:58:23 **** Incremental Build of configuration Debug for project PEPL_PPU ****
 make -j7 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:153:18: warning: unused variable 'adc4_diff_buffer' [-Wunused-variable]
+  153 |         uint16_t adc4_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
+      |                  ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:152:18: warning: unused variable 'adc1_diff_buffer' [-Wunused-variable]
+  152 |         uint16_t adc1_diff_buffer[ADC_BUFFER_SIZE];  // Use signed type for differential result
+      |                  ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:395:13: warning: 'MX_ADC4_Init' defined but not used [-Wunused-function]
+  395 | static void MX_ADC4_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:323:13: warning: 'MX_ADC1_Init' defined but not used [-Wunused-function]
+  323 | static void MX_ADC1_Init(void)
+      |             ^~~~~~~~~~~~
 arm-none-eabi-gcc -o "PEPL_PPU.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/samitmohapatra/STM32CubeIDE/workspace_1.18.1/PEPL_PPU/STM32G474RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PEPL_PPU.map" -Wl,--gc-sections -static -lm --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PEPL_PPU.elf
  
 arm-none-eabi-size  PEPL_PPU.elf 
 arm-none-eabi-objdump -h -S PEPL_PPU.elf  > "PEPL_PPU.list"
    text	   data	    bss	    dec	    hex	filename
-  42400	    468	   2412	  45280	   b0e0	PEPL_PPU.elf
+  34464	    468	   2396	  37328	   91d0	PEPL_PPU.elf
 Finished building: default.size.stdout
  
 Finished building: PEPL_PPU.list
  
 
-14:40:07 Build Finished. 0 errors, 0 warnings. (took 1s.67ms)
+16:58:25 Build Finished. 0 errors, 4 warnings. (took 1s.119ms)
 
