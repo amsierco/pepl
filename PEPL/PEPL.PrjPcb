@@ -101,6 +101,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[Document4]
+DocumentPath=PEPL.IntLib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [ProjectVariant1]
 UniqueId=4f7afc9b-b6e1-4f80-a880-1d60495ee256
 Description=DNP
@@ -110,6 +127,10 @@ VariationCount=2
 Variation1=Designator=R8|UniqueId=\IXXEHTAA|Kind=1|AlternatePart=
 Variation2=Designator=R10|UniqueId=\VGMTBYTI|Kind=1|AlternatePart=
 ParamVariationCount=0
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for PEPL\Design Rule Check - Main.html
+DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
